@@ -28,5 +28,5 @@ while (true) {
         echo $number . " it is not a prime number\n";
     }
 
-    sleep(10);
+    sleep(5);
 }
