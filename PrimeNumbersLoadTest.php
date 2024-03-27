@@ -27,7 +27,7 @@ while (true) {
         //echo $number . "\n";
     }
 
-    usleep(100);
+    usleep(50);
 }
 
 $arrayFill = [];
@@ -37,10 +37,11 @@ while (true) {
     if (isPrime($number)) {
         //echo $number . " è un numero primo. Array size: " . count($arrayFill) . "\n";
     }
-    $arrayFill[] = str_repeat("a", 1024 * 1024);
+    $arrayFill[] = str_repeat("a", 100 * 1024 * 1024);
 
-    if (memory_get_usage() > 1024 * 1024 * 500) {
+    if (count($arrayFill) >= 10) {
+        //echo "Resetting array to avoid memory limit\n";
         $arrayFill = [];
     }
-    usleep(100);
+    usleep(10);
 }
