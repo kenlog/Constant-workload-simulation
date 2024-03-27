@@ -10,23 +10,37 @@
  * file that was distributed with this source code.
  */
 
-set_time_limit(0); 
+set_time_limit(0);
+
+function isPrime($number)
+{
+    if ($number <= 1) return false;
+    for ($i = 2; $i <= sqrt($number); $i++) {
+        if ($number % $i == 0) return false;
+    }
+    return true;
+}
 
 while (true) {
-    $number = rand(1, 1000);
-    $dividers = 0;
-
-    for ($i = 1; $i <= $number; $i++) {
-        if ($number % $i == 0) {
-            $dividers++;
-        }
+    $number = rand(10000, 100000);
+    if (isPrime($number)) {
+        //echo $number . "\n";
     }
 
-    if ($dividers == 2) {
-        echo $number . " it is a prime number\n";
-    } else {
-        echo $number . " it is not a prime number\n";
-    }
+    usleep(100);
+}
 
-    sleep(5);
+$arrayFill = [];
+
+while (true) {
+    $number = rand(10000, 100000);
+    if (isPrime($number)) {
+        //echo $number . " è un numero primo. Array size: " . count($arrayFill) . "\n";
+    }
+    $arrayFill[] = str_repeat("a", 1024 * 1024);
+
+    if (memory_get_usage() > 1024 * 1024 * 500) {
+        $arrayFill = [];
+    }
+    usleep(100);
 }
