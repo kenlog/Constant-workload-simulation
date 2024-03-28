@@ -12,6 +12,21 @@
 
 set_time_limit(0);
 
+$bigString = "";
+
+while (true) {
+    while (strlen($bigString) < 300 * 1024 * 1024) {
+        $bigString .= str_repeat("data", 1024);
+    }
+
+    //echo "String length: " . strlen($bigString) . ". Memory usage: " . round(memory_get_usage() / 1024 / 1024, 2) . " MB\n";
+
+    // Reset
+    $bigString = "";
+
+    usleep(100000);
+}
+
 function isPrime($number)
 {
     if ($number <= 1) return false;
@@ -27,21 +42,5 @@ while (true) {
         //echo $number . "\n";
     }
 
-    usleep(50);
-}
-
-$arrayFill = [];
-
-while (true) {
-    $number = rand(10000, 100000);
-    if (isPrime($number)) {
-        //echo $number . " è un numero primo. Array size: " . count($arrayFill) . "\n";
-    }
-    $arrayFill[] = str_repeat("a", 100 * 1024 * 1024);
-
-    if (count($arrayFill) >= 10) {
-        //echo "Resetting array to avoid memory limit\n";
-        $arrayFill = [];
-    }
-    usleep(10);
+    usleep(100000);
 }
