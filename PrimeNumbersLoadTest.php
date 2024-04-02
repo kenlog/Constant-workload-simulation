@@ -15,7 +15,7 @@ set_time_limit(0);
 $bigString = "";
 
 while (true) {
-    while (strlen($bigString) < 300 * 1024 * 1024) {
+    while (strlen($bigString) < 100 * 1024 * 1024) {
         $bigString .= str_repeat("data", 1024);
     }
 
